@@ -1,18 +1,8 @@
 # Configuration-HTTPS-CertBot
 
-Documentation for configuring digital certbot cerfic for safe environments.
-
-Run the following command to generate a private key and a certificate signing request:
-
-openssl req -config https.config -new -out csr.pem
-
-Run the following command to create a self-signed certificate:
-
-openssl x509 -req -days 365 -extfile https.config -extensions v3_req -in csr.pem -signkey key.pem -out https.crt
-
-Run the following command to generate a pfx file containing the certificate and the private key that you can use with Kestrel.
-
-openssl pkcs12 -export -out https.pfx -inkey key.pem -in https.crt -password pass:<<Password>>
+Upon completion of certbot installation for the desired webserver it will present a message showing the path where the * .pem files are located. Enter the folder using the command "cd <path>" and execute the command below.<br/>
+  
+openssl pkcs12 -export -out bundle.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem -password pass:xxx
 
 chmod 777 -R <<Directory or File>>
   
